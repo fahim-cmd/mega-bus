@@ -122,3 +122,20 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+#plusBtn, #minusBtn{
+    cursor: pointer;
+}
+/* confirmation style */
+#confirmation{
+    background-color: rgba(255, 255, 255, 0.623);
+    border-radius:10px;
+    display: none;
+    width: 50%;
+    height: auto;
+    margin: 30px default;
+    padding-top: 10px;
+    font-weight: 600;
+}
+.confirmMessage{
+    text-align: center;
+}
