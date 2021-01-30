@@ -69,8 +69,11 @@
                         <label for="">First Class ($150)</label>
                         <input id="firstClassInput" class="inp-style inp-width" value="0" type="number" name="">
                     </div>
-                    <div class="plus-minus-btn">
-                        <p><span id="plusBtn" onclick="handleTicketNumber('firstClass' , true)">+</span>
+                    <div class="plus-minus-btn d-flex justify-content-between">
+                        <p class="btnStyle">
+                            <span id="plusBtn" onclick="handleTicketNumber('firstClass' , true)">+</span>
+                        </p>
+                        <p class="btnStyle">
                             <span id="minusBtn" onclick="handleTicketNumber('firstClass' ,false)">-</span>
                         </p>
                     </div>
@@ -80,8 +83,11 @@
                         <label for="">Economy ($100)</label>
                         <input id="economyInput" class="inp-style inp-width" value="0" type="number" name="">
                     </div>
-                    <div class="plus-minus-btn">
-                        <p> <span id="plusBtn" onclick="handleTicketNumber('economy', true)">+</span>
+                    <div class="plus-minus-btn d-flex justify-content-between">
+                        <p class="btnStyle">
+                            <span id="plusBtn" onclick="handleTicketNumber('economy', true)">+</span>
+                        </p>
+                        <p class="btnStyle">
                             <span id="minusBtn" onclick="handleTicketNumber('economy', false)">-</span>
                         </p>
                     </div>
@@ -124,22 +130,30 @@
     <section id="confirmation" class="container">
         <div>
             <div class="confirmMessage">
-                <h4 style="font-weight: 800">Congratulations!</h4>
+                <h4 style="font-weight: 900">Congratulations!</h4>
                 <h6>Your ticket has arrived</h6>
             </div>
             <hr>
             <p>Dear traveller,</p>
-            <p>we are very happy to confirm your booking.Your total ticket is <span id="totalTickets"></span> </p>
-
-            <div>
+            <p><small>we are very happy to confirm your booking.</small> </p>
+            <div style="color:darkmagenta">
                 <h6>Attached you will find your ticket:</h6>
                 <pre>
     1.Open the PDF 
     2.Print your ticket or add it to your mobile phone.
     3.Bring it with you the day of your activity
     4.Enjoy your activity
+ </pre>
+            </div>
+
+            <div>
+                <h6>Your Order</h6>
+                <pre>
+    Total tickets: <span id="totalTickets"></span>
+    Total cost : <span id="totalCost"></span>
 </pre>
             </div>
+
             <hr>
             <p style="font-size:11px; color: gray; text-align:center; padding-bottom: 10px;">Let us know how we can
                 help!</p>
@@ -178,7 +192,9 @@
 
             const total = subtotal + tax;
             document.getElementById("total").innerText = total;
+            return total;
         }
+
 
         //ticket input amount convert to number.
         function getSitInput(quantity) {
@@ -187,14 +203,21 @@
             return sitCount;
         }
 
-        //confirmation page
-        document.getElementById("bookNow").addEventListener("click", function () {
-            document.getElementById("mainWork").style.display = "none";
-            document.getElementById("confirmation").style.display = "block";
 
-            const totalTickets = getSitInput("firstClass") + getSitInput("economy");
-            document.getElementById("totalTickets").innerText = totalTickets;
+        //confirmation page        
+        document.getElementById("bookNow").addEventListener("click", function () {
+            if (getSitInput("firstClass") || getSitInput("economy") > 0) {
+
+                document.getElementById("mainWork").style.display = "none";
+                document.getElementById("confirmation").style.display = "block";
+
+                const totalTickets = getSitInput("firstClass") + getSitInput("economy");
+                document.getElementById("totalTickets").innerText = totalTickets;
+
+                document.getElementById("totalCost").innerText = handleTotalPrice();
+            }
         })
+
     </script>
 </body>
 

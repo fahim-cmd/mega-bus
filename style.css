@@ -122,12 +122,23 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+.btnStyle{
+    background-color:#52AF3A;
+    border-radius: 8px;
+    margin-left: 5px;
+    height: 45px;
+    width: 45px;
+    padding: 0px 0px 20px 4px;
+}
 #plusBtn, #minusBtn{
     cursor: pointer;
+    color: white;
+    padding: 10px;    
 }
+
 /* confirmation style */
 #confirmation{
-    background-color: rgba(255, 255, 255, 0.623);
+    background-color: rgba(255, 255, 255, 0.835);
     border-radius:10px;
     display: none;
     width: 50%;
